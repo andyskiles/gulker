@@ -1,11 +1,11 @@
 var gulp = require('gulp'),
     
     // jekyll plugins
-    spawn = require('child_process').spawn,
+    cp = require('child_process'),
 
     // other plugins
-    livereload = require('gulp-livereload'),
-    webserver = require('gulp-webserver'),
+    browserSync = require('browser-sync'),
+    reload = browserSync.reload,
     rename = require('gulp-rename'),
     notify = require('gulp-notify'),
     
@@ -21,33 +21,36 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify');
  
 
+var messages = {
+    jekyllBuild: '<span style="color: grey">Running:</span> $ jekyll build'
+};
 
 
 
-// Run Jekyll Build Asynchronously
-gulp.task('jekyll', function () {
-    var jekyll = spawn('jekyll', ['build']);
-     
-    jekyll.stdout.on('data', function (data) {
-        console.log('jekyll:\t' + data);
+
+
+// Build Jekyll _site
+gulp.task('jekyll-build', function (done) {
+    browserSync.notify(messages.jekyllBuild);
+    return cp.spawn('jekyll', ['build'], {stdio: 'inherit'})
+        .on('close', done);
+});
+
+
+// Rebuild Jekyll and do page reload
+gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
+    browserSync.reload();
+});
+
+
+// Wait for jekyll-build, then launch server
+gulp.task('browser-sync', ['styles', 'jekyll-build'], function() {
+    browserSync({
+        server: {
+            baseDir: '_site'
+        }
     });
 });
-
-
-
-
-
-// Run webserver
-gulp.task('webserver', function() {
-  gulp.src('_site')
-    .pipe(webserver({
-      livereload: true,
-      port: 1212,
-      directoryListing: false,
-      open: true
-    }));
-});
- 
  
 
 
@@ -59,6 +62,8 @@ gulp.task('styles', function() {
     style: "expanded"
   })
     .pipe(postcss([ autoprefixer({ browsers: ['last 2 version'] }) ]))
+    .pipe(reload({stream:true}))
+    .pipe(gulp.dest('_site/site_assets/css'))
     .pipe(gulp.dest('site_assets/css'))
     .pipe(notify({ message: 'Styles done' }));
 });
@@ -72,12 +77,14 @@ gulp.task('scripts', function() {
     .pipe(concat('main.js'))
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(reload({stream:true}))
+    .pipe(gulp.dest('_site/site_assets/js'))
     .pipe(gulp.dest('site_assets/js/'))
     .pipe(notify({ message: 'Scripts done mayne' }));
 });
 
 
-// Scripts
+// Min Scripts
 gulp.task('minscripts', function() {
   return gulp.src('development/js/main.js')
     .pipe(concat('main.js'))
@@ -102,17 +109,14 @@ gulp.task('watch', function () {
     gulp.watch('development/js/main.js', ['scripts']);
 
     // Watch .html files or .md files
-    gulp.watch(['_layouts/**', '_includes/**', '_posts/**', 'index.html'], ['jekyll']);
-
-    // Watch site assets
-    gulp.watch(['site_assets/**'], ['jekyll']);
+    gulp.watch(['_layouts/**', '_includes/**', '_posts/**', 'index.html'], ['jekyll-rebuild']);
 })
  
  
 
 
 
-gulp.task('default', ['styles', 'scripts', 'minscripts', 'jekyll', 'webserver', 'watch']);
+gulp.task('default', ['browser-sync', 'watch']);
 
 
 
