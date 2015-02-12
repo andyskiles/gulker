@@ -1,0 +1,16 @@
+// base
+@import "base/b-config",
+		"base/b-base",
+		"base/b-typography";
+
+
+// layout
+@import "layout/l-header",
+		"layout/l-page",
+		"layout/l-footer";
+
+
+// partials
+@import "partials/p-header",
+		"partials/p-page",
+		"partials/p-footer";

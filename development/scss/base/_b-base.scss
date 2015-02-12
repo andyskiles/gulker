@@ -1,0 +1,30 @@
+/*
+========================
+Base-Base
+========================
+*/
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font: 100%/1.5 Arial, sans-serif;
+
+  @include bp(l) {
+    font: 125%/1.5 Arial, sans-serif;
+  }
+}
+
+body {
+	background: white;
+	font-family: sans-serif;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+}
+
+
+
+

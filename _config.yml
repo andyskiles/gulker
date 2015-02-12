@@ -1,0 +1,6 @@
+name: gekulp
+markdown: redcarpet
+pygments: true
+auto: true
+exclude: node_modules, gulpfile.js, development, README.md
+permalink: none

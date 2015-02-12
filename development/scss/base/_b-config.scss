@@ -1,0 +1,36 @@
+/*
+========================
+Base-Config
+========================
+*/
+
+@import "susy";
+
+
+
+
+
+/*==============
+$MIXINS
+===============*/
+
+/* Breakpoints */
+@mixin bp($point) {
+// small
+	@if $point == s {
+		@media (min-width: 0em) and (max-width: 40em)  { @content; }
+	}
+// medium
+	@if $point == m {
+		@media (min-width: 40.063em) and (max-width: 64em) { @content; }
+	}
+
+// large
+	@if $point == l {
+		@media (min-width: 64.063em) { @content; }
+	}
+// extra-large
+	@if $point == xl {
+		@media (min-width: 90.063em) { @content; }
+	}
+}

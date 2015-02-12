@@ -1,0 +1,134 @@
+/*
+========================
+Base-Config
+========================
+*/
+/*==============
+$MIXINS
+===============*/
+/* Breakpoints */
+/*
+========================
+Base-Base
+========================
+*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font: 100%/1.5 Arial, sans-serif;
+}
+@media (min-width: 64.063em) {
+  html {
+    font: 125%/1.5 Arial, sans-serif;
+  }
+}
+
+body {
+  background: white;
+  font-family: sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+========================
+Base-Typography
+========================
+*/
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.17em;
+}
+
+h4 {
+  font-size: 1em;
+}
+
+h5 {
+  font-size: 0.83em;
+}
+
+p {
+  line-height: 1.5;
+  margin: 0 0 1em;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+code, pre {
+  font-family: monospace, serif;
+  font-size: .9em;
+  background: whitesmoke;
+  padding-left: 1em;
+  display: block;
+}
+
+pre {
+  border-top: 1px solid whitesmoke;
+  border-bottom: 1px solid whitesmoke;
+  padding: .5em 0;
+  margin-bottom: 1em;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1em 0;
+}
+
+li {
+  padding-left: 1em;
+  text-indent: -.7em;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*
+========================
+Layout-Header
+========================
+*/
+/*
+========================
+Layout-Page
+========================
+*/
+/*
+========================
+Layout-Footer
+========================
+*/
+/*
+========================
+Partials-Header
+========================
+*/
+/*
+========================
+Partials-Page
+========================
+*/
+/*
+========================
+Partials-Footer
+========================
+*/
