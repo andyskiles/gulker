@@ -25,6 +25,10 @@ $MIXINS
 		@media (min-width: 40.063em) and (max-width: 64em) { @content; }
 	}
 
+	@if $point == mup {
+		@media (min-width: 40.063em) { @content; }
+	}
+
 // large
 	@if $point == l {
 		@media (min-width: 64.063em) { @content; }
