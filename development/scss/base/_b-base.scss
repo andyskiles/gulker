@@ -19,10 +19,14 @@ html {
 }
 
 body {
-	background: yellow;
+	background: white;
 	font-family: sans-serif;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
+}
+
+iframe, video, img {
+	max-width: 100%;
 }
 
 
