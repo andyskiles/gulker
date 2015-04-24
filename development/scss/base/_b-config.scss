@@ -11,20 +11,27 @@ Base-Config
 
 
 /*==============
-$MIXINS
+Breakpoints
 ===============*/
 
-/* Breakpoints */
 @mixin bp($point) {
+
 // small
 	@if $point == s {
 		@media (min-width: 0em) and (max-width: 40em)  { @content; }
 	}
+
 // medium
 	@if $point == m {
 		@media (min-width: 40.063em) and (max-width: 64em) { @content; }
 	}
 
+// small and medium
+	@if $point == smed {
+		@media (min-width: 0em) and (max-width: 64em) { @content; }
+	}
+
+// medium and up
 	@if $point == mup {
 		@media (min-width: 40.063em) { @content; }
 	}
@@ -33,6 +40,7 @@ $MIXINS
 	@if $point == l {
 		@media (min-width: 64.063em) { @content; }
 	}
+
 // extra-large
 	@if $point == xl {
 		@media (min-width: 90.063em) { @content; }

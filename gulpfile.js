@@ -7,7 +7,6 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     reload = browserSync.reload,
     rename = require('gulp-rename'),
-    notify = require('gulp-notify'),
     
     // css plugins
     sass = require('gulp-ruby-sass'),
@@ -64,8 +63,7 @@ gulp.task('styles', function() {
     .pipe(postcss([ autoprefixer({ browsers: ['last 2 version'] }) ]))
     .pipe(reload({stream:true}))
     .pipe(gulp.dest('_site/site_assets/css'))
-    .pipe(gulp.dest('site_assets/css'))
-    .pipe(notify({ message: 'Styles done' }));
+    .pipe(gulp.dest('site_assets/css'));
 });
 
 
@@ -79,8 +77,7 @@ gulp.task('scripts', function() {
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(reload({stream:true}))
     .pipe(gulp.dest('_site/site_assets/js'))
-    .pipe(gulp.dest('site_assets/js/'))
-    .pipe(notify({ message: 'Scripts done mayne' }));
+    .pipe(gulp.dest('site_assets/js/'));
 });
 
 
@@ -92,8 +89,7 @@ gulp.task('minscripts', function() {
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(uglify())
     .pipe(rename('main.min.js'))
-    .pipe(gulp.dest('site_assets/js/'))
-    .pipe(notify({ message: 'Minscripts done mayne' }));
+    .pipe(gulp.dest('site_assets/js/'));
 });
  
  
